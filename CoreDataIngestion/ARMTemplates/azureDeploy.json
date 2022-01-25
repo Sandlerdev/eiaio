@@ -1,0 +1,44 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        
+    
+        "ProjectName": {
+            "type": "string",
+            "metadata": {
+                "description": "Project Name will be used as prefix for resources created by this template."
+            }
+        },
+        "OwnerEmail": {
+            "type": "string",
+            "metadata": {
+                "description": "Owner Email will be tagged on all resources created by this template."
+            }
+        }
+    },
+    "functions": [],
+    "variables": {
+        "location":"[resourceGroup().location]",
+        "storageAccountName": "[concat(parameters('ProjectName'), '_storage')]",
+        "resourceTags": {
+            "OwnerEmail": "[parameters('OwnerEmail')]"
+        }
+    },
+    "resources": [
+        {
+            "name": "[variables('storageAccountName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2021-04-01",
+            "tags": "[variables('resourceTags')]",
+            "location": "[variables('location')]",
+            "kind": "StorageV2",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            }
+        }
+    
+    ],
+    "outputs": {}
+}
