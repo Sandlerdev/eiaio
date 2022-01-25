@@ -3,13 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "ProjectName": {
-
-            
-            "defaultValue": "myproject"
+            "value": "myproject"
         },
         "OwnerEmail": {
-            
-            "defaultValue": "user@domain.com"
+            "value": "user@domain.com"
         }
     }
 }
